@@ -2,7 +2,7 @@
 # can be used. For a detailed explenation of all the options please
 # reade README.rst.
 
-set(ARDUINO_DEFAULT_BOARD diecimila) # Default Board ID, when not specified
+set(ARDUINO_DEFAULT_BOARD "uno") # Default Board ID, when not specified
 set(ARDUINO_DEFAULT_PORT /dev/ttyUSB0) # Default Port, when not specified
 
 
@@ -26,17 +26,17 @@ generate_arduino_example(wire_example
 #====================================================================#
 
 # Some installations have renamed the example directories
-if (EXISTS "${ARDUINO_SDK_PATH}/examples/01.Basics/Blink")
+if    (EXISTS "${ARDUINO_SDK_PATH}/examples/01.Basics/Blink")
     set(BLINK_SKETCH "${ARDUINO_SDK_PATH}/examples/01.Basics/Blink")
-else()
+elseif(EXISTS "${ARDUINO_SDK_PATH}/examples/1.Basics/Blink")
     set(BLINK_SKETCH "${ARDUINO_SDK_PATH}/examples/1.Basics/Blink")
 endif()
 
-generate_arduino_firmware(blink_original
-    SKETCH "${BLINK_SKETCH}"
-    PORT  /dev/ttyACM0
-    SERIAL picocom @SERIAL_PORT@
-    BOARD uno)
+#generate_arduino_firmware(blink_original
+#    SKETCH "${BLINK_SKETCH}"
+#    PORT  /dev/ttyACM0
+#    SERIAL picocom @SERIAL_PORT@
+#    BOARD uno)
 
 # Alternative: by variables
 #set(blink_original_SKETCH "${BLINK_SKETCH}")
